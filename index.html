@@ -4,7 +4,33 @@
     <title>黄河知识问答</title>
     <meta charset="UTF-8">
     <style>
-        .hidden { display: none; }
+        body {
+            background-color: #add8e6;
+            font-family: Arial, sans-serif;
+        }
+        .hidden {
+            display: none;
+        }
+        #quiz, #result {
+            background-color: #ffffff;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+        button {
+            background-color: #008CBA;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -21,11 +47,13 @@
         <button id="submit">提交</button>
     </div>
     <div id="result" class="hidden"></div>
+    <button id="clear">清除数据</button>
     <script>
         var startButton = document.getElementById('start');
         var quiz = document.getElementById('quiz');
         var submitButton = document.getElementById('submit');
         var result = document.getElementById('result');
+        var clearButton = document.getElementById('clear');
         var totalAttempts = localStorage.getItem('totalAttempts') || 0;
         var totalScore = localStorage.getItem('totalScore') || 0;
 
@@ -46,6 +74,14 @@
             var averageScore = totalScore / totalAttempts;
             result.textContent = '你的分数：' + score + '. 平均分数：' + averageScore;
             result.classList.remove('hidden');
+        };
+
+        clearButton.onclick = function() {
+            localStorage.removeItem('totalAttempts');
+            localStorage.removeItem('totalScore');
+            totalAttempts = 0;
+            totalScore = 0;
+            result.textContent = '';
         };
     </script>
 </body>
