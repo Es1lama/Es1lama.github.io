@@ -26,7 +26,7 @@
         var quiz = document.getElementById('quiz');
         var submitButton = document.getElementById('submit');
         var result = document.getElementById('result');
-        var attempts = localStorage.getItem('attempts') || 0;
+        var totalAttempts = localStorage.getItem('totalAttempts') || 0;
         var totalScore = localStorage.getItem('totalScore') || 0;
 
         startButton.onclick = function() {
@@ -39,11 +39,11 @@
             var answer1 = document.querySelector('input[name="q1"]:checked').value;
             if (answer1 == '2') score++;
             // 检查更多答案...
-            attempts++;
+            totalAttempts++;
             totalScore += score;
-            localStorage.setItem('attempts', attempts);
+            localStorage.setItem('totalAttempts', totalAttempts);
             localStorage.setItem('totalScore', totalScore);
-            var averageScore = totalScore / attempts;
+            var averageScore = totalScore / totalAttempts;
             result.textContent = '你的分数：' + score + '. 平均分数：' + averageScore;
             result.classList.remove('hidden');
         };
